@@ -65,6 +65,8 @@ class modelling_dataset():
 
             self.total_pics_by_class[char] = i
 
+            print(self.labels)
+
         return np.array(self.pics), np.array(self.labels) 
 
 
@@ -80,6 +82,20 @@ class modelling_dataset():
         h5f.create_dataset('y_train', data=y_train)
         h5f.create_dataset('y_test', data=y_test)
         h5f.close()
+
+    def load_hdf5(self):
+        
+        h5f = h5py.File('dataset.h5','r')
+        X_train = h5f['X_train'][:]
+        X_test = h5f['X_test'][:]
+        h5f.close()  
+
+        h5f = h5py.File('labels.h5','r')
+        y_train = h5f['y_train'][:]
+        y_test = h5f['y_test'][:]
+        h5f.close()  
+
+        return X_train, X_test, y_train, y_test
 
     @property
     def classes_summary(self):
