@@ -2,5 +2,4 @@ oregon_wildlife/
 .ipynb_checkpoints/
 .vscode/
 __pycache__
-dataset.h5
-labels.h5
+*.h5
